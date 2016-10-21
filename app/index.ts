@@ -1,4 +1,4 @@
-///<reference path="../typings/browser.d.ts" />
+///<reference path="../typings/index.d.ts" />
 declare var require: NodeRequire;
 
 // This that LucidWeb normally provides
@@ -21,12 +21,16 @@ require('uiq');
  * here too.  and really you shouldn't be adding much (if any) logic here, so
  * ultimately it doesn't matter.
  */
-var appLogic = require('../.src');
+
+var journalist = require('../.src');
+// journalist.sendTwists = function(twists) {
+//     console.log(JSON.stringify(twists));
+// }
 
 // Set up the shell app w/angular, uiq, and a router
 var router = require('web-core-router');
 var routerOptions = {
-  RouterCnst: router.makeRouterCnst()
+    RouterCnst: router.makeRouterCnst()
 };
 
 /* even though shell-apps should really only have 1 view, having the url <=>
@@ -34,21 +38,37 @@ var routerOptions = {
  * easy way to jump to step N)
  */
 routerOptions.RouterCnst.STATES = {
-  MAIN: {
-    name: 'main',
-    queryParams: [],
-    lazyQueryParams: [],
-    template: '<sample-module></sample-module>',
-    modelBindings: {},
-    default: true
-  }
+    MAIN: {
+        name: 'main',
+        queryParams: [],
+        lazyQueryParams: [],
+        template: '<sample-module></sample-module>',
+        modelBindings: {},
+        default: true
+    }
 };
 
+var name = 'SampleModule';
 // Bootstrap the shell-app module and configure the router
-module.exports = angular.module('shell-app', ['RouterCore', 'uiq', appLogic.name])
-  .config(router.defaultRuleConfig(routerOptions.RouterCnst))
-  .config(router.stateConfig(routerOptions))
-  .run(router.run(routerOptions));
+module.exports = angular.module('shell-app', ['RouterCore', 'uiq', name])
+    .config(router.defaultRuleConfig(routerOptions.RouterCnst))
+    .config(router.stateConfig(routerOptions))
+    .run(router.run(routerOptions));
+
+angular.module(name, [])
+    .directive('sampleModule', function() {
+        return {
+            restrict: 'E',
+            scope: {},
+            controller: function($element) {
+                this.funThings = function() {
+                    $element.append('<h1>FUN THINGS</h1>');
+                };
+            },
+            controllerAs: 'ctrl',
+            template: require('./sampleModule.html')
+        }
+    });
 
 window['q$'] = window['jQuery'];
-document.title = appLogic.name;
+document.title = 'Siq Story Journalist Test Harness';

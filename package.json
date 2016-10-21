@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "a template for basic ts packages",
   "main": ".src/index.js",
+  "types": ".src/types.d.js",
   "homepage": "https://github.com/relateiq/siqstory-journalist",
   "repository": {
     "url": "https://github.com/relateiq/siqstory-journalist.git"
@@ -59,7 +60,9 @@
     ]
   },
   "dependencies": {
-    "sugar": "~1.4.1"
+    "lodash": "~4.16.4",
+    "sugar": "~1.4.1",
+    "uuid": "~2.0.3"
   },
   "author": "scamden@salesforce.com"
 }
