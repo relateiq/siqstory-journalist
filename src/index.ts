@@ -93,6 +93,54 @@ journalistObserver.observe(document,
     { childList: true, subtree: true, attributes: true }
 );
 
+function makeAndAddResizeTwist() {
+    let resizeTwist = new SiqStoryTwist('resize', null);
+    resizeTwist.width = window.innerWidth;
+    resizeTwist.height = window.innerHeight;
+    recordedTwists.push(resizeTwist);
+}
+
+window.addEventListener('resize', function(e) {
+    makeAndAddResizeTwist();
+});
+makeAndAddResizeTwist(); // one to intialize
+
+let events = ['mousemove', 'mousedown', 'mouseup', 'input'];
+
+events.forEach(function(eventType) {
+    document.addEventListener(eventType, function(e) {
+        let targetId;
+        let twist;
+        let target = e.target;
+        switch (e.type) {
+            case 'mouseup':
+            case 'mousedown':
+                if (target instanceof Node) {
+                    targetId = SiqStoryNodeId.getStoryNodeId(target);
+                }
+            case 'mousemove':
+                twist = new SiqStoryTwist('event', targetId);
+                twist.eventType = e.type;
+                if (e instanceof MouseEvent) {
+                    twist.clientX = e.clientX;
+                    twist.clientY = e.clientY;
+                }
+                break;
+            case 'input':
+                if (target instanceof Node) {
+                    targetId = SiqStoryNodeId.getStoryNodeId(target);
+                }
+                twist = new SiqStoryTwist('event', targetId);
+                twist.eventType = e.type;
+                if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement) {
+                    twist.textValue = target.value;
+                }
+                break;
+        }
+        recordedTwists.push(twist);
+    }, true);
+});
+
 setInterval(function() {
     // call inside anonymous to allow debuggin overrides
     siqStoryJournalist.sendTwists(recordedTwists);
@@ -100,10 +148,12 @@ setInterval(function() {
 
 var siqStoryJournalist = {
     // you can just override this method if you want to log them or something instead
+    lastTwistsLength: 0,
     sendTwists: function(twists) {
-        if (!twists.length) {
+        if (!twists.length && twists.length === siqStoryJournalist.lastTwistsLength) {
             return;
         }
+        siqStoryJournalist.lastTwistsLength = twists.length;
         // TODO: network call
         story.twists = twists;
         var oReq = new XMLHttpRequest();
