@@ -23,7 +23,7 @@ export class SiqStoryNode {
     constructor(node: Node) {
         this.nodeType = node.nodeType;
         this.nodeId = SiqStoryNodeId.getStoryNodeId(node);
-        if (node.nodeType === 3) {
+        if (node.nodeType === 3 || node.nodeType === 8) {
             this.nodeValue = node.nodeValue;
         }
         if (node.nodeType === 1) {
