@@ -6,7 +6,7 @@
   "types": ".src/types.d.js",
   "homepage": "https://github.com/relateiq/siqstory-journalist",
   "publishConfig": {
-    "registry": "https://relateiq.artifactoryonline.com/relateiq/api/npm/npm-local/"
+    "registry": "https://registry.npmjs.org/"
   },
   "repository": {
     "url": "https://github.com/relateiq/siqstory-journalist.git"
