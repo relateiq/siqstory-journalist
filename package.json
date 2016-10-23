@@ -1,6 +1,6 @@
 {
   "name": "siqstory-journalist",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "fullstory-esque recording script for fun",
   "main": ".src/index.js",
   "types": ".src/types.d.js",
