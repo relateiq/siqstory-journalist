@@ -5,6 +5,9 @@
   "main": ".src/index.js",
   "types": ".src/types.d.js",
   "homepage": "https://github.com/relateiq/siqstory-journalist",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "repository": {
     "url": "https://github.com/relateiq/siqstory-journalist.git"
   },
