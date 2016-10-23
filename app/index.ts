@@ -22,7 +22,7 @@ require('uiq');
  * ultimately it doesn't matter.
  */
 
-var journalist = require('../.src');
+var journalist = require('../.src')();
 // journalist.sendTwists = function(twists) {
 //     console.log(JSON.stringify(twists));
 // }
@@ -63,6 +63,10 @@ angular.module(name, [])
             controller: function($element) {
                 this.funThings = function() {
                     $element.append('<h1>FUN THINGS</h1>');
+                };
+
+                this.hideMe = function(e) {
+                    e.target.style.display = 'none';
                 };
             },
             controllerAs: 'ctrl',

@@ -2,12 +2,10 @@ export class SiqStoryNodeId extends String {
     private static highestNodeId: number = 0;
 
 
-    public static getStoryNodeId(node: Node): string {
+    public static getStoryNodeId(node: Node, debug?: boolean): string {
         if (node === document) {
             return 'document';
         }
-
-
         if (!node['__siqStoryNodeId']) {
             node['__siqStoryNodeId'] = ++SiqStoryNodeId.highestNodeId + '';
         }
@@ -49,7 +47,7 @@ export class SiqStoryTwist {
     type: string; // childList, attributes, event, resize
     addedNodes: SiqStoryNode[];
     removedNodes: SiqStoryNode[];
-    targetNode: SiqStoryNodeId;
+    targetNode: SiqStoryNode;
     attributeName: string;
     attributeValue: string;
     width: number;
