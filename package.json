@@ -1,6 +1,6 @@
 {
   "name": "siqstory-journalist",
-  "version": "0.4.0",
+  "version": "0.0.0-semantic-release",
   "description": "fullstory-esque recording script for fun",
   "main": ".src/index.js",
   "types": ".src/types.d.js",
@@ -16,7 +16,8 @@
   },
   "scripts": {
     "test": "bin/iqb test",
-    "start": "bin/iqb start"
+    "start": "bin/iqb start",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "peerDependencies": {
     "angular": "1.x",
@@ -50,7 +51,8 @@
     "uiq": "~0.63.3",
     "watchify": "~3.7.0",
     "web-core-router": "0.0.3",
-    "yargs": "~4.2.0"
+    "yargs": "~4.2.0",
+    "semantic-release": "^4.3.5"
   },
   "browserify-shim": {},
   "browserify": {
@@ -63,5 +65,10 @@
     "sugar": "~1.4.1",
     "uuid": "~2.0.3"
   },
-  "author": "scamden@salesforce.com"
+  "author": "scamden@salesforce.com",
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
 }
