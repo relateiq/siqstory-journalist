@@ -42,7 +42,6 @@
     "llexec": "~1.0.1",
     "node-sass": "~3.4.2",
     "riq-partialify": "~3.1.6",
-    "riq-tap-teamcity": "~1.1.1",
     "semantic-release": "^4.3.5",
     "shallow-diff": "0.0.5",
     "tap-min": "~1.1.0",
