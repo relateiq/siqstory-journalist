@@ -5,8 +5,6 @@ declare var require: NodeRequire;
 // These should all be listed as peerDependencies of the app
 window['jQuery'] = require('jquery');
 require('angular');
-require('sugar');
-require('uiq');
 
 /* I've thought about this line for awhile.
  *
@@ -27,7 +25,7 @@ var journalist = require('../.src')();
 //     console.log(JSON.stringify(twists));
 // }
 
-// Set up the shell app w/angular, uiq, and a router
+// Set up the shell app w/angular, and a router
 var router = require('web-core-router');
 var routerOptions = {
     RouterCnst: router.makeRouterCnst()
@@ -50,7 +48,7 @@ routerOptions.RouterCnst.STATES = {
 
 var name = 'SampleModule';
 // Bootstrap the shell-app module and configure the router
-module.exports = angular.module('shell-app', ['RouterCore', 'uiq', name])
+module.exports = angular.module('shell-app', ['RouterCore', name])
     .config(router.defaultRuleConfig(routerOptions.RouterCnst))
     .config(router.stateConfig(routerOptions))
     .run(router.run(routerOptions));
