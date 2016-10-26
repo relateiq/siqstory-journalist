@@ -1,12 +1,3 @@
-dependencies:
-  pre:
-    - npm install
 test:
-  override:
-    - echo no tests
-deployment:
-  aws:
-    branch:
-      - master
-    commands:
-      -
+  post:
+    - npm run semantic-release || true
