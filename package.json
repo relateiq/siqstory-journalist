@@ -41,7 +41,7 @@
     "karma-teamcity-reporter": "~1.0.0",
     "llexec": "~1.0.1",
     "node-sass": "~3.4.2",
-    "riq-partialify": "~3.1.6",
+    "riq-partialify": "~3.2.0",
     "semantic-release": "^4.3.5",
     "shallow-diff": "0.0.5",
     "tap-min": "~1.1.0",
